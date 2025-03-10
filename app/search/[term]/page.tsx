@@ -4,7 +4,7 @@ import { getPopularMovies, getSearchMovies } from "@/lib/getMovies";
 import { notFound } from "next/navigation";
 import React from "react";
 
-export default async function SearchPage({ params }: { params: { term: string } }) {
+export default async function SearchPage({ params }: { params: Promise<{ term: string }> }) {
   const { term } = await params;
 
   if (!term) notFound();

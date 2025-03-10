@@ -1,15 +1,14 @@
 import AiSuggestion from "@/components/AiSuggestion";
 import MoviesCarousel from "@/components/MoviesCarousel";
 import { getDiscoverMovies } from "@/lib/getMovies";
-import React from "react";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     genre: string;
-  };
+  }>;
 };
 
 async function GenrePage({ params, searchParams }: Props) {
@@ -17,6 +16,7 @@ async function GenrePage({ params, searchParams }: Props) {
   const { genre } = await searchParams;
 
   const movies = await getDiscoverMovies(id, genre);
+
   return (
     <div className="max-w-7xl mx-auto">
       {/* AI suggestions */}
